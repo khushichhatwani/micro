@@ -1,0 +1,130 @@
+;32 bit binary addition . model small
+.386
+data
+num1 D 00000000H
+num2 DD 00000000H
+num3 DD 00000000H
+msg db 10, 13, "Enter the first no.:: g"
+msg1 b 10, 13, "Enter the second no.:: $" msg2 db 10, 13,"The Resultant sum is :: S"
+code .startup
+MOV AH, 09
+MOV DX, OFFSET msg INT 21H
+MOV EBX, O MOV CX, 8
+AGAIN: MOV AH, 01 ;1ST NO. ENTERED INT 21H
+CMP AL,' A' JGE L2
+SUB AL, 30H SHL EBX, 4
+AD BL, LA LOOP AGAIN
+MOV numI, EBX
+MOV AH, 09
+MOV DX, OFFSET msgI
+INT 21H
+MOV EBX, O
+MOV CX, 8
+AGAINI: MOV AH, 01 ;2nd NO. ENTERED
+INT 21H
+CMP AL, 'A' JGE L2
+SUB AL, 30H SHL EBX, 4
+AD BL, LA LOOP AGAINI
+MOV num2, EBX
+mov a x , w o r d
+p t r n u m mov d x ,
+w o r d
+p t r
+n u m 2 add al, d1
+daa
+mov b1, al mov al, ah adc al, dh daa
+mov bh, al
+mov word p t r
+num3, bx mov ax, word p t r num1+2 mov dx, word p t r num2+2 adc al,dI
+daa
+mov b1, al mov al,ah
+adc al, dh daa
+mov bh, al
+mov wordptrnum3+2,bx mov ebx, num3
+mov ah, 09h
+mov dx, offset msg2 int 21h
+jnc 16
+mov ah, 02h mov d1, "1"
+int 21h
+16: MOV CX, 8
+AGAIN2: ROL EBX, 4 MOV DL, LB
+AND DL, OFH
+AD DL, 30H
+MOV AH, 02 INT 21H
+LOOP AGAIN2
+L2: . EXIT END
+
+
+Code:
+;32 bit binary subtraction
+. model small
+.386
+stack 100h .data
+num1 DD 00000000H num2 DD 00000000H num3 DD 00000000H
+msg db 10, 13, "Enter the first no.:: $"
+msg1 db 10, 13, "Enter the second no.:: $"
+msg2 db 10, 13,"The Resultant Difference is :: $"
+.code startup
+MOV AH, 09
+MOV DX, OFFSET msg INT 21H
+MOV EBX, O MOV CX, 8
+AGAIN: MOV AH, 01 ;1ST NO. ENTERED INT 21H
+CMP AL, 'A' IGE L2
+SUB AL, 30H SHL EBX, 4
+AD BL, AL LOOP AGAIN
+MOV numI, EBX MOV AH, 09
+MOV DX, OFFSET msgl INT 21H
+MOV EBX, O
+MOV CX, 8
+AGAIN: MOV AH, 01 ;2nd NO. ENTERED INT 21H
+CMP AL,' A' JGE L2
+SUB AL, 30h SHL EBX, 4
+AD BL, LA LOOP AGAINI
+MOV num2, EBx
+mov ah, 09h
+mov dx, o f f s e t msg2 int 21h
+mov ax, word ptr num!+2 mov dx, word p t r num2+2
+sub al, dl das
+mov dl, al sbb ah, dh das
+mov dh, al call disph
+mov ax, word ptr num mov d x , w o r d p t r num2
+sub al, dI das
+mov di,al
+sbb ah, ah das
+mov dh, al
+disph proc near mov c1, 4
+mov ch, 4 disphl:
+rol ax, cl push ax
+and al, Ofh add al, 30h cmp al, '9' jbe disph2
+add al, 7 disph2:
+mov ah, 2
+mov di,al int 21h
+рор ax dec ch
+jne disph1 ret
+disph endp
+. EXIT L2:
+. EXIT END
+
+
+CODE:
+;32bit binary division
+. model tiny . code
+mov ax, 02H mov bx, 04H
+div bl
+DISP PROC
+PUSH CX MOV CL, 4 MOv CH, 4
+DI:
+ROL AX, CL PUSH AX
+AND AL, OFH ADD AL . 30H
+'g'
+J B E D2
+ADD AL, 7H
+D2:
+MOV AH, 02H
+MOV DL, LA INT 21H
+POP AX DEC CH INZ DI
+POP CY RET
+DISP ENDP
+.exit End
+
+
