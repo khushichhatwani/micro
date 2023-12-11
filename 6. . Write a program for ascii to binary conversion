@@ -1,0 +1,26 @@
+.model small
+.data
+msg b Odh, Oah, ' Program for converting ASCI to Binary: $
+msg1 db Odh, Oah,,' Enter the element : $ .code
+.startup
+mov dx,offset msg
+mov ah, 09h int 21h
+mov d×, offset msgi mov ah, 09h
+int 21h
+mov ah, 01h int 21h
+mov b1, al
+mov d1, 0Ah mov ah, 02h
+int 21h
+again:
+shl b1, 1 ic 12
+jnc 13
+loop again 12:
+mov d1, 31h mov ah, 02h
+int 21h jmp 14
+13:
+mov d1, 30h
+mov ah, 02h int 21h
+jmp 14
+14:
+loop again
+End
