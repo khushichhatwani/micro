@@ -1,0 +1,57 @@
+. model small
+stack 1000h . data
+arrl db 05h, 06h, 07h, 09h, 09h
+arr2 db 0lh, Olh, 0lh, Olh, 01h diff db '§8'
+sum db ' s$s' space db ' $'
+endl db Oah, ' $' .code
+printSpace proc stdcall
+mov ah, 09h
+mov dx, offset space
+int 21h ret
+printSpace endp printSum proc stdcall
+mov ah, 09h
+mov dx, o f f s e t sum int 21h
+call printSpace ret.
+printSum endp printSub proc stdcall
+mov ah, 09h
+mov dx, offset diff int 21h
+call printSpace ret
+printSub endp addition proc stdcall
+mov cX, 5
+mov si, O a:
+xor bx, bx
+mov bl, byte ptr[arritsi] add b1, byte ptr[arr2+si]
+cmp b1, 09h ia b
+C:
+or bx, 3030h
+mov byte ptr [sum], bh mov byte ptr [sumt1], b1
+call printSum inc si
+1oop a
+ret
+b:
+xor ax, ax
+mov al, bi sub al, Oah inc ah
+; sub bi, 09h
+dec bl
+mov b x , a x jmp c
+addition endp
+subtraction proc stdcall
+mov
+cx, 5
+mov si, O s:
+xor ax, ax
+xor bx, bx
+mov al, byte ptr [arritsil mov bl, byte ptr [arr2+si] sub al, b1
+or al, 30h
+mov byte ptr[diff], al
+call printSub inc si
+1oop S
+ret
+subtraction endp start:
+mov ax, @data mov d s , ax
+mov es, ax
+call addition mov ah, 09h
+mov dx, offset endl int 21h
+call subtraction imp last
+last:
+.exit O end start
