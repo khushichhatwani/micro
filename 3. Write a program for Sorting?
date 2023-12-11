@@ -1,0 +1,56 @@
+
+;sorting
+. model small
+.386 .data A R R A Y
+DW 2 0
+D U P
+( ? )
+DATA1
+dw 0 0 0 0 H N U M B
+DW 0 0 0 0 H
+msg db 10, 13, "Enter the size of the array :: S" msg2 b 10, 13, "Enter the array :: $"
+msg3 db 10, 13, "The sorted array is :: S"
+code .startup
+MOV AH, 09
+MOV DX, OFFSET msg INT 21H
+MOV AH. 01 INT 21H
+SUB AL, 30H MOV AH, O
+MOV CX, AX
+MOV DATA1, XA
+MOV AH, 09
+MOV DX, OFFSET msg2 INT 21H
+MOV AH. 0 MOV SI, O
+MOV BX, OFFSET ARRAY
+LI: MOV DL, OAH; jump onto next line MOV AH, 02H
+INT 21H
+MOV DX, S I ; input element of the array
+MOV AH, 01h INT 21H
+SUB AL, 30H
+MOV SI, XD
+MOV B[X + SIJ, XA INC S I
+LOOP LI
+MOV CX, DATA1
+MOV BX, OFFSET ARRAY
+MOV DI, CX
+L2: MOV CX, DATA1
+MOV NUMB, CX DEC NUMB
+MOV CX, NUMB MOV ST. 0
+; Changel :Change2 ; change3
+L3: MOV AL, [BX +SI]
+CMP AL, [BX + SI + 1] IL L4
+X C H G A L , B[ X + S I + 1 ] MOV [BX + SIJ, LA
+L4: INC SI
+LOOP L3 DEC DI
+INZ L2
+MOV CX, DATAI
+MOV SI, O
+MOV BX, OFFSET ARRAY
+MOV AH, 09
+MOV DX, OFFSET msg3 INT 21H
+L5: MOV DL, OAH; jump onto next line
+MOV AH, 02H INT 21H
+MOV DX, [BX + SI] INC S I
+AD DL, 30H
+MOV AH, 02 INT 21H
+LOOP L5
+.EXIT END
